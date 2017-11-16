@@ -1,0 +1,1145 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{analyzing-subway-data-ndfdsi}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Subway Data Analysis}\label{subway-data-analysis}
+
+\subsection{Introduction}\label{introduction}
+
+O sistema de ônibus e trens de Nova Iorque - o Metro Transit Authority -
+fornece seus dados para download através de arquivos csv. Uma das
+informações disponíveis são os dados das catracas do metrô que contém
+logs semanais de entradas cumulativas e saídas por catraca por estação
+de metrô em algum intervalo de tempo.
+
+Neste projeto iremos utilizar apenas os das catraca disponíveis em:
+http://web.mta.info/developers/turnstile.html.
+
+    \section{Sobre este projeto}\label{sobre-este-projeto}
+
+Neste projeto você irá aplicar todos os conhecimentos adquiridos neste
+primeiro mês de curso. Iremos praticar tarefas básicas de aquisição,
+limpeza de dados e nesse processo iremos descobrir coisas essenciais
+sobre os dados utilizando o que foi aprendido no curso de estatística.
+
+O objetivo deste projeto é explorar a relação entre os dados das
+catracas do metro de Nova Iorque e o clima no dia da coleta. Para isso,
+além dos dados do metrô, precisaremos os dados de clima da cidade de
+Nova Iorque.
+
+Os principais pontos que serão verificados neste trabalho:
+
+\begin{itemize}
+\tightlist
+\item
+  Coleta de dados da internet
+\item
+  Utilização de estatística para análise de dados
+\item
+  Manipulação de dados e criação de gráficos simples com o
+  \texttt{Pandas}
+\end{itemize}
+
+\emph{Como conseguir ajuda}: Sugerimos que tente os seguintes canais,
+nas seguintes ordens:
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+Tipo de dúvida\Canais & Google & Fórum & Slack & Email\tabularnewline
+\midrule
+\endhead
+Programação Pyhon e Pandas & 1 & 2 & 3 &\tabularnewline
+Requisitos do projeto & & 1 & 2 & 3\tabularnewline
+Partes específicas do Projeto & & 1 & 2 & 3\tabularnewline
+\bottomrule
+\end{longtable}
+
+Os endereços dos canais são:
+
+\begin{itemize}
+\tightlist
+\item
+  Fórum: https://discussions.udacity.com/c/ndfdsi-project
+\item
+  Slack:
+  \href{https://udacity-br.slack.com/messages/C5MT6E3E1}{udacity-br.slack.com}
+\item
+  Email: data-suporte@udacity.com
+\end{itemize}
+
+\textbf{Espera-se que o estudante entregue este relatório com:}
+
+\begin{itemize}
+\tightlist
+\item
+  Todos os TODO feitos, pois eles são essenciais para que o código rode
+  corretamente
+\item
+  O arquivo ipynb exportado como html
+\end{itemize}
+
+Para entregar este projeto, vá a
+\href{https://coco.udacity.com/nanodegrees/nd111/locale/pt-br/versions/1.0.0/parts/339726/modules/339733/lessons/340886/project}{sala
+de aula} e submeta o seu \texttt{.ipynb} e o html, zipados.
+
+    \section{Lembretes}\label{lembretes}
+
+Antes de começarmos, alguns lembretes devem ter em mente ao usar os
+notebooks iPython:
+
+\begin{itemize}
+\tightlist
+\item
+  Lembre-se de que você pode ver do lado esquerdo de uma célula de
+  código quando foi executado pela última vez se houver um número dentro
+  das chaves.
+\item
+  Quando você inicia uma nova sessão do notebook, certifique-se de
+  executar todas as células até o ponto em que você deixou a última vez.
+  Mesmo que a saída ainda seja visível a partir de quando você executou
+  as células em sua sessão anterior, o kernel começa em um estado novo,
+  então você precisará recarregar os dados, etc. em uma nova sessão.
+\item
+  O ponto anterior é útil para ter em mente se suas respostas não
+  correspondem ao que é esperado nos questionários da aula. Tente
+  recarregar os dados e execute todas as etapas de processamento um a um
+  para garantir que você esteja trabalhando com as mesmas variáveis e
+  dados que estão em cada fase do questionário.
+\end{itemize}
+
+    \subsection{Seção 1 - Coleta de
+Dados}\label{seuxe7uxe3o-1---coleta-de-dados}
+
+\subsubsection{\texorpdfstring{\emph{Exercicio
+1.1}}{Exercicio 1.1}}\label{exercicio-1.1}
+
+Mãos a obra!! Agora é sua vez de coletar os dados. Escreva abaixo um
+código python que acesse o link
+http://web.mta.info/developers/turnstile.html e baixe os arquivos do mês
+de junho de 2017. O arquivo deverá ser salvo com o nome
+turnstile\_100617.txt onde 10/06/17 é a data do arquivo.
+
+Abaixo seguem alguns comandos que poderão te ajudar:
+
+Utilize a biblioteca \textbf{urllib} para abrir e resgatar uma página da
+web. Utilize o comando abaixo onde \textbf{url} será o caminho da página
+da web onde se encontra o arquivo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{u }\OperatorTok{=}\NormalTok{ urllib.urlopen(url)}
+\NormalTok{html }\OperatorTok{=}\NormalTok{ u.read()}
+\end{Highlighting}
+\end{Shaded}
+
+Utilize a biblioteca \textbf{BeautifulSoup} para procurar na página pelo
+link do arquivo que deseja baixar. Utilize o comando abaixo para criar o
+seu objeto \emph{soup} e procurar por todas as tags 'a'no documento:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{soup }\OperatorTok{=}\NormalTok{ BeautifulSoup(html, }\StringTok{"html.parser"}\NormalTok{)}
+\NormalTok{links }\OperatorTok{=}\NormalTok{ soup.find_all(}\StringTok{'a'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Uma dica para baixar apenas os arquivos do mês de junho é verificar a
+data no nome do arquivo. Por exemplo, para baixar o arquivo do dia
+17/06/2017 verifique se o link termina com
+\emph{"turnstile\_170610.txt"}. Se não fizer isso você baixará todos os
+arquivos da página. Para fazer isso utilize o comando conforme abaixo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if} \StringTok{'1706'} \KeywordTok{in}\NormalTok{ link.get(}\StringTok{'href'}\NormalTok{):}
+\end{Highlighting}
+\end{Shaded}
+
+E a dica final é utilizar o comando abaixo para fazer o download do
+arquivo txt:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{urllib.urlretrieve(link_do_arquivo, filename)}
+\end{Highlighting}
+\end{Shaded}
+
+Lembre-se, primeiro, carregue todos os pacotes e funções que você estará
+usando em sua análise.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k+kn}{import} \PY{n+nn}{urllib}
+         \PY{k+kn}{from} \PY{n+nn}{bs4} \PY{k}{import} \PY{n}{BeautifulSoup}
+         \PY{k+kn}{from} \PY{n+nn}{urllib}\PY{n+nn}{.}\PY{n+nn}{request} \PY{k}{import} \PY{n}{urlopen}\PY{p}{,} \PY{n}{urlretrieve}
+         \PY{c+c1}{\PYZsh{}Abre a página e ler o conteúdo html}
+         \PY{n}{maingPageHtml} \PY{o}{=} \PY{n}{urllib}\PY{o}{.}\PY{n}{request}\PY{o}{.}\PY{n}{urlopen}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{http://web.mta.info/developers/turnstile.html}\PY{l+s+s2}{\PYZdq{}} \PY{p}{)}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}
+         \PY{n}{soup} \PY{o}{=} \PY{n}{BeautifulSoup}\PY{p}{(}\PY{n}{maingPageHtml}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{html.parser}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}obtém todos os links da página}
+         \PY{n}{links} \PY{o}{=} \PY{n}{soup}\PY{o}{.}\PY{n}{find\PYZus{}all}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{totalArquivos} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{link} \PY{o+ow}{in} \PY{n}{links}\PY{p}{:}
+             \PY{n}{href}\PY{o}{=} \PY{n}{link}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{href}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{if} \PY{n}{href} \PY{o}{!=} \PY{k+kc}{None} \PY{o+ow}{and} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1706}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{href}\PY{p}{:}
+                 \PY{n}{totalArquivos} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                 \PY{c+c1}{\PYZsh{}recupera o nome do arquivo}
+                 \PY{n}{filename} \PY{o}{=} \PY{n}{href}\PY{o}{.}\PY{n}{rsplit}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+                 \PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{http://web.mta.info/developers/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{href}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Iniciando o download do arquivo }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{filename}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{urlretrieve}\PY{p}{(}\PY{n}{url}\PY{p}{,} \PY{n}{filename}\PY{p}{)}
+                 
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Foram baixados: }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{totalArquivos}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+http://web.mta.info/developers/data/nyct/turnstile/turnstile\_170624.txt
+Iniciando o download do arquivo turnstile\_170624.txt
+http://web.mta.info/developers/data/nyct/turnstile/turnstile\_170617.txt
+Iniciando o download do arquivo turnstile\_170617.txt
+http://web.mta.info/developers/data/nyct/turnstile/turnstile\_170610.txt
+Iniciando o download do arquivo turnstile\_170610.txt
+http://web.mta.info/developers/data/nyct/turnstile/turnstile\_170603.txt
+Iniciando o download do arquivo turnstile\_170603.txt
+Foram encontrados 4
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\emph{Exercicio
+1.2}}{Exercicio 1.2}}\label{exercicio-1.2}
+
+Escreva uma função que pegue a lista de nomes dos arquivos que você
+baixou no exercicio 1.1 e consolide-os em um único arquivo. Deve existir
+apenas uma linha de cabeçalho no arquivo de saida.
+
+Por exemplo, se o arquivo\_1 tiver: linha 1... linha 2...
+
+e o outro arquivo, arquivo\_2 tiver: linha 3... linha 4... linha 5...
+
+Devemos combinar o arquivo\_1 com arquivo\_2 em um arquivo mestre
+conforme abaixo:
+
+'C/A, UNIT, SCP, DATEn, TIMEn, DESCn, ENTRIESn, EXITSn' linha 1... linha
+2... linha 3... linha 4... linha 5...
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{k}{def} \PY{n+nf}{create\PYZus{}master\PYZus{}turnstile\PYZus{}file}\PY{p}{(}\PY{n}{filenames}\PY{p}{,} \PY{n}{output\PYZus{}file}\PY{p}{)}\PY{p}{:}
+             \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{output\PYZus{}file}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{master\PYZus{}file}\PY{p}{:}
+                 \PY{n}{master\PYZus{}file}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C/A,UNIT,SCP,STATION, LINENAME, DIVISION, DATEn,TIMEn,DESCn,ENTRIESn,EXITSn}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{filename} \PY{o+ow}{in} \PY{n}{filenames}\PY{p}{:}
+                     \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{r}\PY{p}{:}
+                         \PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{r}\PY{p}{:}
+                             \PY{k}{if} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C/A,UNIT,SCP,STATION,LINENAME,DIVISION,DATE,TIME,DESC,ENTRIES,EXITS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o+ow}{in} \PY{n}{line}\PY{p}{:}
+                                 \PY{k}{continue}
+                             \PY{n}{master\PYZus{}file}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{line} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}    
+          
+         \PY{n}{filenames} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{turnstile\PYZus{}170603.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{turnstile\PYZus{}170610.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{turnstile\PYZus{}170617.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{turnstile\PYZus{}170624.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+         \PY{n}{output\PYZus{}file} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{turnstile.txt}\PY{l+s+s2}{\PYZdq{}}
+         \PY{n}{create\PYZus{}master\PYZus{}turnstile\PYZus{}file}\PY{p}{(}\PY{n}{filenames}\PY{p}{,} \PY{n}{output\PYZus{}file}\PY{p}{)}            
+\end{Verbatim}
+
+
+    \subsubsection{\texorpdfstring{\emph{Exercicio
+1.3}}{Exercicio 1.3}}\label{exercicio-1.3}
+
+Neste exercício, escreva um função que leia o master\_file criado no
+exercicio anterior e carregue-o em um pandas dataframe. Esta função deve
+filtrar para que o dataframe possua apenas linhas onde a coluna "DESCn"
+possua o valor "Regular".
+
+Por exemplo, se o data frame do pandas estiver conforme abaixo:
+
+\begin{verbatim}
+,C/A,UNIT,SCP,DATEn,TIMEn,DESCn,ENTRIESn,EXITSn
+0,A002,R051,02-00-00,05-01-11,00:00:00,REGULAR,3144312,1088151
+1,A002,R051,02-00-00,05-01-11,04:00:00,DOOR,3144335,1088159
+2,A002,R051,02-00-00,05-01-11,08:00:00,REGULAR,3144353,1088177
+3,A002,R051,02-00-00,05-01-11,12:00:00,DOOR,3144424,1088231
+\end{verbatim}
+
+O dataframe deverá ficar conforme abaixo depois de filtrar apenas as
+linhas onde a coluna DESCn possua o valor REGULAR:
+
+\begin{verbatim}
+0,A002,R051,02-00-00,05-01-11,00:00:00,REGULAR,3144312,1088151
+2,A002,R051,02-00-00,05-01-11,08:00:00,REGULAR,3144353,1088177
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         
+         \PY{k}{def} \PY{n+nf}{filter\PYZus{}by\PYZus{}regular}\PY{p}{(}\PY{n}{filename}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{}abre o arquivo como data frame do pandas}
+             \PY{n}{turnstile\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{filename}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}filtra para trazer somente os dados que tenham descn igual a regular}
+             \PY{n}{turnstile\PYZus{}data} \PY{o}{=} \PY{n}{turnstile\PYZus{}data}\PY{p}{[}\PY{n}{turnstile\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DESCn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{REGULAR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{k}{return} \PY{n}{turnstile\PYZus{}data}
+         
+         \PY{n}{turnstile\PYZus{}regular} \PY{o}{=} \PY{n}{filter\PYZus{}by\PYZus{}regular}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{turnstile.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{turnstile\PYZus{}regular}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:}     C/A  UNIT       SCP STATION  LINENAME  DIVISION       DATEn     TIMEn  \textbackslash{}
+         0  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  00:00:00   
+         1  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  04:00:00   
+         2  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  08:00:00   
+         3  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  12:00:00   
+         4  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  16:00:00   
+         
+              DESCn  ENTRIESn   EXITSn  
+         0  REGULAR   6195217  2098317  
+         1  REGULAR   6195240  2098318  
+         2  REGULAR   6195256  2098347  
+         3  REGULAR   6195346  2098432  
+         4  REGULAR   6195518  2098491  
+\end{Verbatim}
+            
+    \subsubsection{\texorpdfstring{\emph{Exercicio
+1.4}}{Exercicio 1.4}}\label{exercicio-1.4}
+
+Os dados do metrô de NY possui dados cumulativos de entradas e saidas
+por linha. Assuma que você possui um dataframe chamado df que contém
+apenas linhas para uma catraca em particular (unico SCP, C/A, e UNIT). A
+função abaixo deve alterar essas entradas cumulativas para a contagem de
+entradas desde a última leitura (entradas desde a última linha do
+dataframe).
+
+Mais especificamente, você deverá fazer duas coisas:
+
+1 - Criar uma nova coluna chamada ENTRIESn\_hourly 2 - Inserir nessa
+coluna a diferença entre ENTRIESn da coluna atual e a da coluna
+anterior. Se a linha possuir alguma NAN, preencha/substitua por 1.
+
+Dica: as funções do pandas shift() e fillna() pode ser úteis nesse
+exercicio.
+
+Abaixo tem um exemplo de como seu dataframe deve ficar ao final desse
+exercicio:
+
+\begin{verbatim}
+    C/A  UNIT       SCP     DATEn     TIMEn    DESCn  ENTRIESn    EXITSn  ENTRIESn_hourly
+0     A002  R051  02-00-00  05-01-11  00:00:00  REGULAR   3144312   1088151                1
+1     A002  R051  02-00-00  05-01-11  04:00:00  REGULAR   3144335   1088159               23
+2     A002  R051  02-00-00  05-01-11  08:00:00  REGULAR   3144353   1088177               18
+3     A002  R051  02-00-00  05-01-11  12:00:00  REGULAR   3144424   1088231               71
+4     A002  R051  02-00-00  05-01-11  16:00:00  REGULAR   3144594   1088275              170
+5     A002  R051  02-00-00  05-01-11  20:00:00  REGULAR   3144808   1088317              214
+6     A002  R051  02-00-00  05-02-11  00:00:00  REGULAR   3144895   1088328               87
+7     A002  R051  02-00-00  05-02-11  04:00:00  REGULAR   3144905   1088331               10
+8     A002  R051  02-00-00  05-02-11  08:00:00  REGULAR   3144941   1088420               36
+9     A002  R051  02-00-00  05-02-11  12:00:00  REGULAR   3145094   1088753              153
+10    A002  R051  02-00-00  05-02-11  16:00:00  REGULAR   3145337   1088823              243
+\end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{k+kn}{import} \PY{n+nn}{pandas}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}hourly\PYZus{}entries}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
+             
+             
+             \PY{c+c1}{\PYZsh{}cria uma coluna nova (ENTRIESn\PYZus{}hourly) no dataframe e preenche suas linhas com a diferença de entradas}
+             \PY{c+c1}{\PYZsh{} da linha atual com a linha anterior da coluna (ENTRIESn)}
+             \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ENTRIESn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ENTRIESn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ENTRIESn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{shift}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}Substitui as linhas com valor == NaN por 1}
+             \PY{n}{df}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}converte o valor da coluna de float para int}
+             \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ENTRIESn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ENTRIESn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{int64}\PY{p}{)}
+             \PY{k}{return} \PY{n}{df}
+         
+         \PY{n}{turnstile\PYZus{}regular} \PY{o}{=} \PY{n}{get\PYZus{}hourly\PYZus{}entries}\PY{p}{(}\PY{n}{turnstile\PYZus{}regular}\PY{p}{)}
+         \PY{n}{turnstile\PYZus{}regular}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}42}]:}     C/A  UNIT       SCP STATION  LINENAME  DIVISION       DATEn     TIMEn  \textbackslash{}
+         0  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  00:00:00   
+         1  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  04:00:00   
+         2  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  08:00:00   
+         3  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  12:00:00   
+         4  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  16:00:00   
+         
+              DESCn  ENTRIESn   EXITSn  ENTRIESn\_hourly  
+         0  REGULAR   6195217  2098317                1  
+         1  REGULAR   6195240  2098318               23  
+         2  REGULAR   6195256  2098347               16  
+         3  REGULAR   6195346  2098432               90  
+         4  REGULAR   6195518  2098491              172  
+\end{Verbatim}
+            
+    \subsubsection{\texorpdfstring{\emph{Exercicio
+1.5}}{Exercicio 1.5}}\label{exercicio-1.5}
+
+Faça o mesmo do exercicio anterior mas agora considerando as saidas,
+coluna EXITSn. Para isso crie uma coluna chamada de EXITSn\_hourly e
+insira a diferença entre a coluna EXITSn da linha atual versus a linha
+anterior. Se tiver algum NaN, preencha/substitua por 0.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{k+kn}{import} \PY{n+nn}{pandas}
+         
+         \PY{k}{def} \PY{n+nf}{get\PYZus{}hourly\PYZus{}exits}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
+             
+             \PY{c+c1}{\PYZsh{}cria uma coluna nova (EXITSn\PYZus{}hourly) no dataframe e preenche suas linhas com a diferença de entradas}
+             \PY{c+c1}{\PYZsh{} da linha atual com a linha anterior da coluna (EXITSn)}
+             \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EXITSn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EXITSn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EXITSn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{shift}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}Substitui as linhas com valor == NaN por 1}
+             \PY{n}{df}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}converte o valor da coluna de float para int}
+             \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EXITSn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EXITSn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{int64}\PY{p}{)}
+             \PY{k}{return} \PY{n}{df}
+         
+         \PY{n}{turnstile\PYZus{}regular} \PY{o}{=} \PY{n}{get\PYZus{}hourly\PYZus{}exits}\PY{p}{(}\PY{n}{turnstile\PYZus{}regular}\PY{p}{)}
+         \PY{n}{turnstile\PYZus{}regular}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:}     C/A  UNIT       SCP STATION  LINENAME  DIVISION       DATEn     TIMEn  \textbackslash{}
+         0  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  00:00:00   
+         1  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  04:00:00   
+         2  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  08:00:00   
+         3  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  12:00:00   
+         4  A002  R051  02-00-00   59 ST   NQR456W       BMT  05/27/2017  16:00:00   
+         
+              DESCn  ENTRIESn   EXITSn  ENTRIESn\_hourly  EXITSn\_hourly  
+         0  REGULAR   6195217  2098317                1              0  
+         1  REGULAR   6195240  2098318               23              1  
+         2  REGULAR   6195256  2098347               16             29  
+         3  REGULAR   6195346  2098432               90             85  
+         4  REGULAR   6195518  2098491              172             59  
+\end{Verbatim}
+            
+    \subsubsection{\texorpdfstring{\emph{Exercicio
+1.6}}{Exercicio 1.6}}\label{exercicio-1.6}
+
+Dado uma variável de entrada que representa o tempo no formato de: ~~~~
+"00:00:00" (hora: minutos: segundos) ~~~~ Escreva uma função para
+extrair a parte da hora do tempo variável de entrada E devolva-o como um
+número inteiro. Por exemplo: ~~~~~~~~ 1) se a hora for 00, seu código
+deve retornar 0 ~~~~~~~~ 2) se a hora for 01, seu código deve retornar 1
+~~~~~~~~ 3) se a hora for 21, seu código deve retornar 21 ~~~~~~~~ Por
+favor, devolva a hora como um número inteiro.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{k}{def} \PY{n+nf}{time\PYZus{}to\PYZus{}hour}\PY{p}{(}\PY{n}{time}\PY{p}{)}\PY{p}{:}
+             
+             \PY{n}{hour} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{k}{return} \PY{n+nb}{int}\PY{p}{(}\PY{n}{hour}\PY{p}{)}
+         
+         \PY{n}{time} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{00:20:00}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{time\PYZus{}to\PYZus{}hour}\PY{p}{(}\PY{n}{time}\PY{p}{)}\PY{p}{)}
+         \PY{n}{time} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{01:20:00}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{time\PYZus{}to\PYZus{}hour}\PY{p}{(}\PY{n}{time}\PY{p}{)}\PY{p}{)}
+         \PY{n}{time} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{21:20:00}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{time\PYZus{}to\PYZus{}hour}\PY{p}{(}\PY{n}{time}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0
+1
+21
+
+    \end{Verbatim}
+
+    \subsection{Exercicio 2 - Análise dos
+dados}\label{exercicio-2---anuxe1lise-dos-dados}
+
+\subsubsection{\texorpdfstring{\emph{Exercicio
+2.1}}{Exercicio 2.1}}\label{exercicio-2.1}
+
+Para verificar a relação entre o movimento do metrô e o clima,
+precisaremos complementar os dados do arquivo já baixado com os dados do
+clima. Nós complementamos para você este arquivo com os dados de clima
+de Nova Iorque e disponibilizamos na área de materiais do projeto. Você
+pode acessa-lo pelo link:
+https://s3.amazonaws.com/content.udacity-data.com/courses/ud359/turnstile\_data\_master\_with\_weather.csv
+
+Agora que temos nossos dados em um arquivo csv, escreva um código python
+que leia este arquivo e salve-o em um data frame do pandas.
+
+Dica:
+
+Utilize o comando abaixo para ler o arquivo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pd.read_csv(}\StringTok{'output_list.txt'}\NormalTok{, sep}\OperatorTok{=}\StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        
+        \PY{k}{def} \PY{n+nf}{read\PYZus{}turnstile\PYZus{}with\PYZus{}weather}\PY{p}{(}\PY{n}{filename}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}abre o arquivo como data frame do pandas}
+            \PY{n}{turnstile\PYZus{}with\PYZus{}weather} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{filename}\PY{p}{)}
+            \PY{k}{return} \PY{n}{turnstile\PYZus{}with\PYZus{}weather}
+        
+        \PY{n}{filename} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{turnstile\PYZus{}data\PYZus{}master\PYZus{}with\PYZus{}weather.csv}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{turnstile\PYZus{}with\PYZus{}weather} \PY{o}{=} \PY{n}{read\PYZus{}turnstile\PYZus{}with\PYZus{}weather}\PY{p}{(}\PY{n}{filename}\PY{p}{)}
+        \PY{n}{turnstile\PYZus{}with\PYZus{}weather}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:}    Unnamed: 0  UNIT       DATEn     TIMEn  Hour    DESCn  ENTRIESn\_hourly  \textbackslash{}
+        0           0  R001  2011-05-01  01:00:00     1  REGULAR              0.0   
+        1           1  R001  2011-05-01  05:00:00     5  REGULAR            217.0   
+        2           2  R001  2011-05-01  09:00:00     9  REGULAR            890.0   
+        3           3  R001  2011-05-01  13:00:00    13  REGULAR           2451.0   
+        4           4  R001  2011-05-01  17:00:00    17  REGULAR           4400.0   
+        
+           EXITSn\_hourly  maxpressurei  maxdewpti   {\ldots}     meandewpti  meanpressurei  \textbackslash{}
+        0            0.0         30.31       42.0   {\ldots}           39.0          30.27   
+        1          553.0         30.31       42.0   {\ldots}           39.0          30.27   
+        2         1262.0         30.31       42.0   {\ldots}           39.0          30.27   
+        3         3708.0         30.31       42.0   {\ldots}           39.0          30.27   
+        4         2501.0         30.31       42.0   {\ldots}           39.0          30.27   
+        
+           fog  rain  meanwindspdi  mintempi  meantempi  maxtempi  precipi  thunder  
+        0  0.0   0.0           5.0      50.0       60.0      69.0      0.0      0.0  
+        1  0.0   0.0           5.0      50.0       60.0      69.0      0.0      0.0  
+        2  0.0   0.0           5.0      50.0       60.0      69.0      0.0      0.0  
+        3  0.0   0.0           5.0      50.0       60.0      69.0      0.0      0.0  
+        4  0.0   0.0           5.0      50.0       60.0      69.0      0.0      0.0  
+        
+        [5 rows x 22 columns]
+\end{Verbatim}
+            
+    \subsubsection{\texorpdfstring{\emph{Exercicio
+2.2}}{Exercicio 2.2}}\label{exercicio-2.2}
+
+Agora crie uma função que calcule a quantidade de dias chuvosos, para
+isso retorne a contagem do numero de dias onde a coluna \emph{"rain"} é
+igual a 1.
+
+Dica: Você também pode achar que a interpretação de números como números
+inteiros ou float pode não ~~~~ funcionar inicialmente. Para contornar
+esta questão, pode ser útil converter ~~~~ esses números para números
+inteiros. Isso pode ser feito escrevendo cast (coluna como inteiro).
+~~~~ Então, por exemplo, se queríamos lançar a coluna maxtempi como um
+número inteiro, nós devemos ~~~~ escrever algo como cast (maxtempi as
+integer) = 76, em oposição a simplesmente ~~~~ onde maxtempi = 76.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{k}{def} \PY{n+nf}{num\PYZus{}rainy\PYZus{}days}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{}agrupa os dados pela data e soma a quantidade de itens encontrados}
+             \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATEn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}print(df[\PYZsq{}rain\PYZsq{}])}
+             \PY{c+c1}{\PYZsh{}conta o total de dias que choveu}
+             \PY{k}{return} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+             
+             
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{num\PYZus{}rainy\PYZus{}days}\PY{p}{(}\PY{n}{turnstile\PYZus{}with\PYZus{}weather}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+10
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\emph{Exercicio
+2.3}}{Exercicio 2.3}}\label{exercicio-2.3}
+
+Calcule se estava nebuloso ou não (0 ou 1) e a temperatura máxima para
+fog (isto é, a temperatura máxima ~~~~ para dias nebulosos).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}162}]:} \PY{k}{def} \PY{n+nf}{max\PYZus{}temp\PYZus{}aggregate\PYZus{}by\PYZus{}fog}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{}agrupa os dados pela data}
+              \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATEn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+              \PY{c+c1}{\PYZsh{}recupera o total de dias que estava nebuloso}
+              \PY{n}{fog\PYZus{}day} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+              \PY{c+c1}{\PYZsh{}pega a maior temperatura de um dia nebuloso}
+              \PY{n}{maxtempi\PYZus{}fog\PYZus{}day} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{maxtempi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+              \PY{c+c1}{\PYZsh{}recupera o total de dias que não estava nebuloso}
+              \PY{n}{non\PYZus{}fog\PYZus{}day} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+              \PY{c+c1}{\PYZsh{}pega a maior temperatura de um dia que não está nebuloso}
+              \PY{n}{maxtempi\PYZus{}non\PYZus{}fog\PYZus{}day} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{maxtempi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+              \PY{k}{return} \PY{n}{fog\PYZus{}day}\PY{p}{,} \PY{n}{maxtempi\PYZus{}fog\PYZus{}day}\PY{p}{,} \PY{n}{non\PYZus{}fog\PYZus{}day}\PY{p}{,} \PY{n}{maxtempi\PYZus{}non\PYZus{}fog\PYZus{}day}
+              
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{max\PYZus{}temp\PYZus{}aggregate\PYZus{}by\PYZus{}fog}\PY{p}{(}\PY{n}{turnstile\PYZus{}with\PYZus{}weather}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(5, 81.0, 25, 86.0)
+
+    \end{Verbatim}
+
+    \subsubsection{*Exercicio 2.4}\label{exercicio-2.4}
+
+Calcule agora a média de 'meantempi' nos dias que são sábado ou domingo
+(finais de semana):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k+kn}{import} \PY{n+nn}{csv}
+        
+        \PY{k+kn}{from} \PY{n+nn}{datetime} \PY{k}{import} \PY{n}{datetime}
+        \PY{c+c1}{\PYZsh{}retorna um Date a partir de uma string no formado yyy\PYZhy{}MM\PYZhy{}dd}
+        \PY{k}{def} \PY{n+nf}{to\PYZus{}date}\PY{p}{(}\PY{n}{dateStr}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n}{datetime}\PY{o}{.}\PY{n}{strptime}\PY{p}{(}\PY{n}{dateStr}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}retorna o dia da semana de uma dada}
+        \PY{k}{def} \PY{n+nf}{get\PYZus{}weekday}\PY{p}{(}\PY{n}{date}\PY{p}{)}\PY{p}{:}   
+            \PY{k}{return} \PY{n+nb}{int}\PY{p}{(}\PY{n}{date}\PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}verifica se a data é fim de semana}
+        \PY{k}{def} \PY{n+nf}{is\PYZus{}weekend}\PY{p}{(}\PY{n}{weekday}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{p}{(}\PY{n}{weekday} \PY{o}{==} \PY{l+m+mi}{0} \PY{o+ow}{or} \PY{n}{weekday} \PY{o}{==} \PY{l+m+mi}{6}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}retorna a média da temperatura nos fins de semana}
+        \PY{k}{def} \PY{n+nf}{avg\PYZus{}weekend\PYZus{}temperature}\PY{p}{(}\PY{n}{filename}\PY{p}{)}\PY{p}{:}
+            \PY{n}{turnstile\PYZus{}with\PYZus{}weather} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{filename}\PY{p}{)}
+            
+            \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f\PYZus{}in}\PY{p}{:}
+                \PY{n}{in\PYZus{}reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{DictReader}\PY{p}{(}\PY{n}{f\PYZus{}in}\PY{p}{)}
+                \PY{n}{total} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{n}{previous\PYZus{}date} \PY{o}{=} \PY{k+kc}{None}
+                \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{in\PYZus{}reader}\PY{p}{:}
+                    \PY{n}{data} \PY{o}{=} \PY{n}{to\PYZus{}date}\PY{p}{(}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATEn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+                    \PY{k}{if} \PY{n}{is\PYZus{}weekend}\PY{p}{(}\PY{n}{get\PYZus{}weekday}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{n}{data} \PY{o}{!=} \PY{n}{previous\PYZus{}date}\PY{p}{)}\PY{p}{:}
+                        \PY{n}{total} \PY{o}{+}\PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{meantempi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+                        \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                    \PY{n}{previous\PYZus{}date} \PY{o}{=} \PY{n}{data}
+                \PY{n+nb}{print}\PY{p}{(}\PY{n}{count}\PY{p}{)}
+            \PY{k}{return} \PY{n}{total} \PY{o}{/} \PY{n}{count}
+        
+        \PY{n}{filename} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{turnstile\PYZus{}data\PYZus{}master\PYZus{}with\PYZus{}weather.csv}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{avg\PYZus{}weekend\PYZus{}temperature}\PY{p}{(}\PY{n}{filename}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+9
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} 65.11111111111111
+\end{Verbatim}
+            
+    \subsubsection{*Exercicio 2.5}\label{exercicio-2.5}
+
+Calcule a média da temperatura mínima 'mintempi' nos dias chuvosos onde
+da temperatura mínima foi maior que do 55 graus:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Verifica se é um dia chuvoso}
+        \PY{k}{def} \PY{n+nf}{is\PYZus{}rainy\PYZus{}day}\PY{p}{(}\PY{n}{rain}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{n}{rain}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{1}
+        
+        \PY{k}{def} \PY{n+nf}{avg\PYZus{}min\PYZus{}temperature}\PY{p}{(}\PY{n}{filename}\PY{p}{)}\PY{p}{:}
+            \PY{n}{turnstile\PYZus{}with\PYZus{}weather} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{filename}\PY{p}{)}
+            \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f\PYZus{}in}\PY{p}{:}
+                \PY{n}{in\PYZus{}reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{DictReader}\PY{p}{(}\PY{n}{f\PYZus{}in}\PY{p}{)}
+                \PY{n}{total} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{n}{previous\PYZus{}date} \PY{o}{=} \PY{k+kc}{None}
+                \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{in\PYZus{}reader}\PY{p}{:}
+                    \PY{n}{data} \PY{o}{=} \PY{n}{to\PYZus{}date}\PY{p}{(}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DATEn}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+                    \PY{n}{temp} \PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mintempi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+                    \PY{k}{if} \PY{n}{is\PYZus{}rainy\PYZus{}day}\PY{p}{(}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{o+ow}{and} \PY{n}{temp} \PY{o}{\PYZgt{}} \PY{l+m+mi}{55} \PY{o+ow}{and} \PY{p}{(}\PY{n}{data} \PY{o}{!=} \PY{n}{previous\PYZus{}date}\PY{p}{)}\PY{p}{:}
+                        \PY{n}{total} \PY{o}{+}\PY{o}{=} \PY{n}{temp}
+                        \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                    \PY{n}{previous\PYZus{}date} \PY{o}{=} \PY{n}{data}
+                \PY{n+nb}{print}\PY{p}{(}\PY{n}{count}\PY{p}{)}
+            \PY{k}{return} \PY{n}{total} \PY{o}{/} \PY{n}{count}
+        
+        \PY{n}{filename} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{turnstile\PYZus{}data\PYZus{}master\PYZus{}with\PYZus{}weather.csv}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{avg\PYZus{}min\PYZus{}temperature}\PY{p}{(}\PY{n}{filename}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+4
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 61.25
+\end{Verbatim}
+            
+    \subsubsection{*Exercicio 2.6}\label{exercicio-2.6}
+
+Antes de realizar qualquer análise, pode ser útil olhar para os dados
+que esperamos analisar. Mais especificamente, vamos examinR as entradas
+por hora em nossos dados do metrô de Nova York para determinar a
+distribuição dos dados. Estes dados são armazenados na coluna
+{[}'ENTRIESn\_hourly'{]}. ~~~~ Trace dois histogramas nos mesmos eixos
+para mostrar as entradas quando esta chovendo vs quando não está
+chovendo. Abaixo está um exemplo sobre como traçar histogramas com
+pandas e matplotlib: ~~~~
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Turnstile_weather [}\StringTok{'column_to_graph'}\NormalTok{]. Hist ()}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}75}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{pandas}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         
+         \PY{k}{def} \PY{n+nf}{entries\PYZus{}histogram}\PY{p}{(}\PY{n}{turnstile\PYZus{}weather}\PY{p}{)}\PY{p}{:}
+             
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{entries\PYZus{}hourly\PYZus{}rainy\PYZus{}day} \PY{o}{=} \PY{n}{turnstile\PYZus{}weather}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ENTRIESn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{turnstile\PYZus{}weather}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{entries\PYZus{}hourly\PYZus{}non\PYZus{}rainy\PYZus{}day} \PY{o}{=} \PY{n}{turnstile\PYZus{}weather}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ENTRIESn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{turnstile\PYZus{}weather}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{entries\PYZus{}hourly\PYZus{}rainy\PYZus{}day}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Chovendo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{entries\PYZus{}hourly\PYZus{}non\PYZus{}rainy\PYZus{}day}\PY{p}{,}  \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sem chover}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Entradas por hora de acordo com o tempo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Número de entradas}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Frequência das entradas}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{100000}\PY{p}{]}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+             
+             \PY{k}{return} \PY{n}{plt}
+         
+         \PY{n}{entries\PYZus{}histogram}\PY{p}{(}\PY{n}{turnstile\PYZus{}with\PYZus{}weather}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_26_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{*Exercicio 2.7}\label{exercicio-2.7}
+
+Os dados que acabou de plotar que tipo de ditribuição? Existe diferença
+na distribuição entre dias chuvosos e não chuvosos?
+
+    ** Resposta **:
+
+A distribuição é assimétrica negativa devido os valores estarem
+concentrados à esquerda.
+
+Sim. Podemos visualizar que os dias com chuva possuem menor entradas por
+hora comparado aos sem chuva, mas devemos levar em conta a quantidade de
+dias com registro de chuva.
+
+    \subsubsection{*Exercicio 2.8}\label{exercicio-2.8}
+
+Construa uma função que que retorne:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A média das entradas com chuva
+\item
+  A média das entradas sem chuva
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}78}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         
+         \PY{k+kn}{import} \PY{n+nn}{pandas}
+         
+         \PY{k}{def} \PY{n+nf}{means}\PY{p}{(}\PY{n}{turnstile\PYZus{}weather}\PY{p}{)}\PY{p}{:}
+             \PY{n}{with\PYZus{}rain\PYZus{}mean} \PY{o}{=} \PY{n}{turnstile\PYZus{}weather}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ENTRIESn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{turnstile\PYZus{}weather}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+             \PY{n}{without\PYZus{}rain\PYZus{}mean} \PY{o}{=} \PY{n}{turnstile\PYZus{}weather}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ENTRIESn\PYZus{}hourly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{turnstile\PYZus{}weather}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rain}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+             \PY{k}{return} \PY{n}{with\PYZus{}rain\PYZus{}mean}\PY{p}{,} \PY{n}{without\PYZus{}rain\PYZus{}mean}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{means}\PY{p}{(}\PY{n}{turnstile\PYZus{}with\PYZus{}weather}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(1105.4463767458733, 1090.278780151855)
+
+    \end{Verbatim}
+
+    Responda as perguntas abaixo de acordo com a saida das suas funções:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Qual a média das entradas com chuva? 1105.45
+\item
+  Qual a média das entradas sem chuva? 1090.28
+\end{enumerate}
+
+    ** Resposta **: Substitua este texto pela sua resposta!
+
+    \subsection{Exercicio 3 - Map Reduce}\label{exercicio-3---map-reduce}
+
+\subsubsection{\texorpdfstring{\emph{Exercicio
+3.1}}{Exercicio 3.1}}\label{exercicio-3.1}
+
+A entrada para esse exercício e o mesmo arquivo da seção anterior
+(Exercicio 2). Você pode baixar o arquivo neste link:
+
+https://s3.amazonaws.com/content.udacity-data.com/courses/ud359/turnstile\_data\_master\_with\_weather.csv
+
+Varmos criar um mapeador agora. Para cada linha de entrada, a saída do
+mapeador deve IMPRIMIR (não retornar) a UNIT como uma chave e o número
+de ENTRIESn\_hourly como o valor. Separe a chave e o valor por uma guia.
+Por exemplo: 'R002 ~t105105.0'
+
+Exporte seu mapeador em um arquivo chamado mapper\_result.txt e envie
+esse arquivo juntamente com a sua submissão. O código para exportar seu
+mapeador já está escrito no código abaixo.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{import} \PY{n+nn}{sys}
+        
+        \PY{k}{def} \PY{n+nf}{mapper}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{sys}\PY{o}{.}\PY{n}{stdin}\PY{p}{:}
+                \PY{k}{try}\PY{p}{:}
+                    \PY{n}{data} \PY{o}{=} \PY{n}{line}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                    \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{22}\PY{p}{:}
+                        \PY{n}{colum}\PY{p}{,}\PY{n}{UNIT}\PY{p}{,}\PY{n}{DATEn}\PY{p}{,}\PY{n}{TIMEn}\PY{p}{,}\PY{n}{Hour}\PY{p}{,}\PY{n}{DESCn}\PY{p}{,}\PY{n}{ENTRIESn\PYZus{}hourly}\PY{p}{,}\PY{n}{EXITSn\PYZus{}hourly}\PY{p}{,}\PY{n}{maxpressurei}\PY{p}{,}\PY{n}{maxdewpti}\PY{p}{,}\PY{n}{mindewpti}\PY{p}{,}\PY{n}{minpressurei}\PY{p}{,}\PY{n}{meandewpti}\PY{p}{,}\PY{n}{meanpressurei}\PY{p}{,}\PY{n}{fog}\PY{p}{,}\PY{n}{rain}\PY{p}{,}\PY{n}{meanwindspdi}\PY{p}{,}\PY{n}{mintempi}\PY{p}{,}\PY{n}{meantempi}\PY{p}{,}\PY{n}{maxtempi}\PY{p}{,}\PY{n}{precipi}\PY{p}{,}\PY{n}{thunder} \PY{o}{=} \PY{n}{data}    
+                        \PY{n+nb}{print}\PY{p}{(}\PY{n}{UNIT}\PY{p}{,} \PY{n}{ENTRIESn\PYZus{}hourly}\PY{p}{)}
+                \PY{k}{except} \PY{n+ne}{ValueError}\PY{p}{:}
+                    \PY{k}{continue}    
+        \PY{k}{if} \PY{n+nv+vm}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZus{}\PYZus{}main\PYZus{}\PYZus{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+            \PY{n}{sys}\PY{o}{.}\PY{n}{stdin} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{turnstile\PYZus{}data\PYZus{}master\PYZus{}with\PYZus{}weather.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{sys}\PY{o}{.}\PY{n}{stdout} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mapper\PYZus{}result.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{mapper}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{\texorpdfstring{\emph{Exercicio
+3.2}}{Exercicio 3.2}}\label{exercicio-3.2}
+
+Agora crie o redutor. Dado o resultado do mapeador do exercicio
+anterior, o redutor deve imprimir(Não retornar) uma linha por UNIT,
+juntamente com o número total de ENTRIESn\_hourly.Ao longo de maio (que
+é a duração dos nossos dados), separados por uma guia. Um exemplo de
+linha de saída do redutor pode ser assim: 'R001 ~t500625.0'
+
+Você pode assumir que a entrada para o redutor está ordenada de tal
+forma que todas as linhas correspondentes a uma unidade particular são
+agrupados. No entanto a saida do redutor terá repetição pois existem
+lojas que aparecem em locais diferentes dos arquivos.
+
+Exporte seu redutor em um arquivo chamado reducer\_result.txt e envie
+esse arquivo juntamente com a sua submissão.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{def} \PY{n+nf}{reducer}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{oldKey} \PY{o}{=} \PY{k+kc}{None}
+             \PY{n}{total} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{sys}\PY{o}{.}\PY{n}{stdin}\PY{p}{:}
+                 \PY{n}{data\PYZus{}mapped} \PY{o}{=} \PY{n}{line}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                 \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{data\PYZus{}mapped}\PY{p}{)} \PY{o}{!=} \PY{l+m+mi}{2}\PY{p}{:}
+                     \PY{k}{continue}
+                 \PY{n}{unit}\PY{p}{,} \PY{n}{entries} \PY{o}{=} \PY{n}{data\PYZus{}mapped}
+                 \PY{k}{if} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{UNIT}\PY{l+s+s1}{\PYZsq{}} \PY{o}{==} \PY{n}{unit}\PY{p}{:}
+                     \PY{k}{continue}
+                 
+                 \PY{k}{if} \PY{n}{oldKey} \PY{o+ow}{and} \PY{n}{oldKey} \PY{o}{!=} \PY{n}{unit}\PY{p}{:}
+                     \PY{n+nb}{print}\PY{p}{(}\PY{n}{oldKey}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{total}\PY{p}{)}
+                     \PY{n}{total} \PY{o}{=} \PY{l+m+mi}{0}
+                     \PY{n}{oldKey} \PY{o}{=} \PY{n}{unit}
+                 
+                 \PY{n}{total} \PY{o}{+}\PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n}{entries}\PY{p}{)}
+                 \PY{n}{oldKey} \PY{o}{=} \PY{n}{unit}
+                 
+             \PY{k}{if} \PY{n}{oldKey} \PY{o}{!=} \PY{k+kc}{None}\PY{p}{:}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{n}{oldKey}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{total}\PY{p}{)}
+         
+         
+         \PY{k}{if} \PY{n+nv+vm}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZus{}\PYZus{}main\PYZus{}\PYZus{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}     
+             \PY{n}{sys}\PY{o}{.}\PY{n}{stdin} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mapper\PYZus{}result.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{sys}\PY{o}{.}\PY{n}{stdout} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{reducer\PYZus{}result.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{reducer}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
