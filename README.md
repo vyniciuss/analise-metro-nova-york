@@ -4,7 +4,8 @@ O The New York City Subway disponibiliza na internet diversos dados sobre sua co
 ![alt text](https://github.com/vyniciuss/analise-metro-nova-york/blob/master/subway.jpg)
 
 # Visão Geral do Projeto
-Este projeto faz parte do nanodegree Fundamento de Data Science 2 da Udacity
+Este projeto faz parte do nanodegree Fundamento de Data Science 2 da Udacity.
+
 Neste projeto, você olha para os dados Metrô de NY e descobre se mais pessoas andam de metrô quando está chovendo versus quando não está.
 
 Você vai confrontar os dados de metrô de Nova York, usar métodos estatísticos e dados visualização para tirar uma conclusão interessante sobre o metrô com o conjunto de dados que você analisou.
